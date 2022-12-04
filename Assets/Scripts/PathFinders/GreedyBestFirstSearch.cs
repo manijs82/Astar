@@ -7,7 +7,7 @@ public class GreedyBestFirstSearch : BreadthFirstSearch
     
     private Dictionary<PathGridObject, float> frontiersPriorityQueue;
     
-    protected override IEnumerator PathFindingSearch()
+    protected override void PathFindingSearch()
     {
         frontiersPriorityQueue = new Dictionary<PathGridObject, float>();
         frontiersPriorityQueue.Add(pathGrid.start, 0);
@@ -16,7 +16,7 @@ public class GreedyBestFirstSearch : BreadthFirstSearch
 
         while (frontiersPriorityQueue.Count > 0)
         {
-            yield return new WaitForSeconds(.03f);
+            //yield return new WaitForSeconds(.03f);
             PathGridObject current = GetHighestPriority();
             frontiersPriorityQueue.Remove(current);
             if(current == pathGrid.goal)

@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 415005006}
   - component: {fileID: 415005005}
   - component: {fileID: 415005004}
+  - component: {fileID: 415005007}
   m_Layer: 0
   m_Name: start
   m_TagString: Untagged
@@ -318,6 +319,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415005002}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &415005007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415005002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3912a7392a489ea61010c701db5fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 1659289739}
+  speed: 0.3
 --- !u!1 &539409380
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +443,7 @@ GameObject:
   - component: {fileID: 680198330}
   - component: {fileID: 680198329}
   - component: {fileID: 680198328}
+  - component: {fileID: 680198331}
   m_Layer: 0
   m_Name: start
   m_TagString: Untagged
@@ -513,6 +529,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680198326}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &680198331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680198326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3912a7392a489ea61010c701db5fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 1722029970}
+  speed: 0.3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1294,7 @@ MonoBehaviour:
   gridObject: {fileID: 1226731597014838778, guid: b889b2fe9941a05479ffdb3b7db14443, type: 3}
   startTf: {fileID: 1470446287}
   goalTf: {fileID: 1981633573}
+  pathFinder: {fileID: 0}
   start: {fileID: 0}
   goal: {fileID: 0}
 --- !u!4 &1307391935
@@ -1481,6 +1512,7 @@ GameObject:
   - component: {fileID: 1470446286}
   - component: {fileID: 1470446285}
   - component: {fileID: 1470446284}
+  - component: {fileID: 1470446288}
   m_Layer: 0
   m_Name: start
   m_TagString: Untagged
@@ -1566,6 +1598,20 @@ Transform:
   m_Father: {fileID: 1307391935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470446288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470446283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3912a7392a489ea61010c701db5fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 1307391936}
+  speed: 0.3
 --- !u!1 &1659289735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1645,7 @@ MonoBehaviour:
   gridObject: {fileID: 1226731597014838778, guid: b889b2fe9941a05479ffdb3b7db14443, type: 3}
   startTf: {fileID: 415005003}
   goalTf: {fileID: 1757827306}
+  pathFinder: {fileID: 0}
   start: {fileID: 0}
   goal: {fileID: 0}
 --- !u!4 &1659289738
@@ -1677,6 +1724,7 @@ MonoBehaviour:
   gridObject: {fileID: 1226731597014838778, guid: b889b2fe9941a05479ffdb3b7db14443, type: 3}
   startTf: {fileID: 680198327}
   goalTf: {fileID: 1857856829}
+  pathFinder: {fileID: 0}
   start: {fileID: 0}
   goal: {fileID: 0}
 --- !u!4 &1722029972
@@ -1710,6 +1758,7 @@ GameObject:
   - component: {fileID: 1729621424}
   - component: {fileID: 1729621423}
   - component: {fileID: 1729621422}
+  - component: {fileID: 1729621425}
   m_Layer: 0
   m_Name: start
   m_TagString: Untagged
@@ -1795,6 +1844,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729621420}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1729621425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729621420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3912a7392a489ea61010c701db5fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 1807935494}
+  speed: 0.3
 --- !u!1 &1757827305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,6 +2000,7 @@ MonoBehaviour:
   gridObject: {fileID: 1226731597014838778, guid: b889b2fe9941a05479ffdb3b7db14443, type: 3}
   startTf: {fileID: 1729621421}
   goalTf: {fileID: 2146684930}
+  pathFinder: {fileID: 0}
   start: {fileID: 0}
   goal: {fileID: 0}
 --- !u!4 &1807935496

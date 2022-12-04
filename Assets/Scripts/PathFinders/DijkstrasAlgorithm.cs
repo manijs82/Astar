@@ -8,7 +8,7 @@ public class DijkstrasAlgorithm : BreadthFirstSearch
     protected Dictionary<PathGridObject, float> frontiersPriorityQueue;
     protected Dictionary<PathGridObject, int> costs;
     
-    protected override IEnumerator PathFindingSearch()
+    protected override void PathFindingSearch()
     {
         frontiersPriorityQueue = new Dictionary<PathGridObject, float>();
         frontiersPriorityQueue.Add(pathGrid.start, 0);
@@ -19,7 +19,7 @@ public class DijkstrasAlgorithm : BreadthFirstSearch
 
         while (frontiersPriorityQueue.Count > 0)
         {
-            yield return new WaitForSeconds(.03f);
+            //yield return new WaitForSeconds(.03f);
             PathGridObject current = GetHighestPriority();
             frontiersPriorityQueue.Remove(current);
             
@@ -43,6 +43,7 @@ public class DijkstrasAlgorithm : BreadthFirstSearch
                         searched[gridObj] = current;
                     else    
                         searched.Add(gridObj, current);
+                    ChangeTileVisuals(gridObj, current);
                     gridObj.ToggleHighLight(true);
                 }
             }

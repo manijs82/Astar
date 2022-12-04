@@ -1,19 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PathGrid))]
 public class BreadthFirstSearch : MonoBehaviour
 {
+    public event Action<List<PathGridObject>> OnPathCalculated;
+    
     protected PathGrid pathGrid;
     
     protected Queue<PathGridObject> frontiers;
     protected Dictionary<PathGridObject, PathGridObject> searched;
     protected List<PathGridObject> path;
 
-    private void Start()
+    private void Awake()
     {
         pathGrid = GetComponent<PathGrid>();
+        pathGrid.pathFinder = this;
     }
 
     private void Update()
@@ -35,14 +39,14 @@ public class BreadthFirstSearch : MonoBehaviour
         }
     }
 
-    protected virtual void StartPathFinding()
+    private void StartPathFinding()
     {
         StopAllCoroutines();
         foreach (var gridObject in pathGrid.grid.GetAll()) gridObject.ToggleHighLight(false);
-        StartCoroutine(PathFindingSearch());
+        PathFindingSearch();
     }
     
-    protected virtual IEnumerator PathFindingSearch()
+    protected virtual void PathFindingSearch()
     {
         frontiers = new Queue<PathGridObject>();
         frontiers.Enqueue(pathGrid.start);
@@ -57,19 +61,23 @@ public class BreadthFirstSearch : MonoBehaviour
 
             foreach (var gridObj in pathGrid.GetNeighbors(current))
             {
-                // yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.D));
-                yield return null;
+                //yield return null;
                 if (!searched.ContainsKey(gridObj))
                 {
                     frontiers.Enqueue(gridObj);
                     searched.Add(gridObj, current);
-                    gridObj.ToggleHighLight(true);
-                    gridObj.SetArrowDirection(pathGrid.GetDirectionFromGridObjects(gridObj, current));
+                    ChangeTileVisuals(gridObj, current);
                 }
             }
         }
 
         HighlightPath();
+    }
+
+    protected void ChangeTileVisuals(PathGridObject gridObj, PathGridObject current)
+    {
+        gridObj.ToggleHighLight(true);
+        gridObj.SetArrowDirection(pathGrid.GetDirectionFromGridObjects(gridObj, current));
     }
 
     protected void HighlightPath()
@@ -86,5 +94,8 @@ public class BreadthFirstSearch : MonoBehaviour
 
         foreach (var gridObj in path)
             gridObj.TogglePathHighLight();
+        
+        path.Reverse();
+        OnPathCalculated?.Invoke(path);
     }
 }

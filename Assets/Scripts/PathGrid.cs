@@ -8,6 +8,7 @@ public class PathGrid : MonoBehaviour
     [SerializeField] protected Transform startTf;
     [SerializeField] protected Transform goalTf;
 
+    [HideInInspector] public BreadthFirstSearch pathFinder;
     [HideInInspector] public PathGridObject start;
     [HideInInspector] public PathGridObject goal;
     public Grid<PathGridObject> grid;
@@ -17,6 +18,11 @@ public class PathGrid : MonoBehaviour
     {
         grid = new Grid<PathGridObject>(20, 20, 1, CreateGridObject,
             new Vector3(transform.position.x, transform.position.y));
+    }
+
+    private void Start()
+    {
+        pathFinder.OnPathCalculated += list => start = list[^1];
     }
 
     private void Update()
@@ -46,7 +52,9 @@ public class PathGrid : MonoBehaviour
             SetGridObjectToMousePos(ref start, startTf);
 
         if (Input.GetMouseButtonDown(1))
+        {
             SetGridObjectToMousePos(ref goal, goalTf);
+        }
     }
 
     private PathGridObject GetGridObjAtMouse()
@@ -93,12 +101,6 @@ public class PathGrid : MonoBehaviour
             temp.Add(grid.GetValue(center.x - 1, center.y));
             temp.Add(grid.GetValue(center.x + 1, center.y));
         }
-        print(neighborAlter);
-        
-        // temp.Add(grid.GetValue(center.x + 1, center.y + 1));
-        // temp.Add(grid.GetValue(center.x - 1, center.y + 1));
-        // temp.Add(grid.GetValue(center.x - 1, center.y - 1));
-        // temp.Add(grid.GetValue(center.x + 1, center.y - 1));
 
         foreach (var p in temp)
             if (p != null)
